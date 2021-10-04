@@ -1,0 +1,36 @@
+<div class="container  " style="margin-left: 30%; margin-top:10%;">
+  <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="text-center">
+            <img src="assets/img/cc.png" class="avatar img-circle img-thumbnail" style="width: 50%;" alt="avatar">
+          </div>
+        </div>
+      <div class="Absolute-Center is-Responsive">
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group" >
+
+          <label for="email" class="visually-hidden">Email address</label>
+          <input type="email" name="email" formControlName="email" class="form-control" id="ex1"  aria-describedby="emailHelp">
+          <div *ngIf="email.touched && email.invalid">
+             <small *ngIf="email.errors.required" class="text-danger">Email is required<br></small>
+              <small *ngIf="email.errors.pattern" class="text-danger">Invalid Email<br></small>
+              <small *ngIf="email.errors.minlength" class="text-danger">Email must contain 8 characters at least<br></small>
+
+          </div>
+
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" formControlName="password" class="form-control" id="exampleInputPassword1" >
+          <div *ngIf="password.touched && password.invalid">
+              <small *ngIf="password.errors.required" class="text-danger">Password is required<br></small>
+              <small *ngIf="password.errors.pattern" class="text-danger">Invalid password<br></small>
+              <small  *ngIf="password.errors.minlength" class="text-danger">password must contain 8 characters at least</small>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>
+</div>
+</div>

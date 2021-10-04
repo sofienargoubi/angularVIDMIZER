@@ -59,6 +59,9 @@ export class FormContactComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getRegion();
+
+
   }
 
   addContact() {
@@ -86,7 +89,7 @@ export class FormContactComponent implements OnInit {
     this.cs.getRegion().subscribe(
 
       (data: object[]) => {
-        console.log(data);
+        
 
 
           this.regions = data;
@@ -97,7 +100,7 @@ export class FormContactComponent implements OnInit {
           console.log(err);
 
         }
-   
+
     );
   }
 

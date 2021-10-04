@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormContactComponent } from './components/form-contact/form-contact.component';
 import { ListContactComponent } from './components/list-contact/list-contact.component';
-import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,14 +14,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { I18nModule } from './i18n/i18n.module';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { Page404Component } from './components/page404/page404.component';
 
 
 
-const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'contact', component: ListContactComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +29,10 @@ const routes: Routes = [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SelectLanguageComponent
+    SelectLanguageComponent,
+    LoginComponent,
+    RegisterComponent,
+    Page404Component
   ],
   imports: [
     NgxPaginationModule,
@@ -41,7 +42,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+
     I18nModule
 
   ],
