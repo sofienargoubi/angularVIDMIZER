@@ -1,16 +1,19 @@
-<div class="container  " style="margin-left: 30%; margin-top:10%;">
+<app-header>
+
+</app-header>
+<div class="container  " style="padding-top: 60px;">
   <div class="row">
       <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="text-center">
             <img src="assets/img/cc.png" class="avatar img-circle img-thumbnail" style="width: 50%;" alt="avatar">
           </div>
         </div>
-      <div class="Absolute-Center is-Responsive">
+      <div class="Absolute-Center is-Responsive col-md-4" >
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group" >
 
-          <label for="email" class="visually-hidden">Email address</label>
+          <label for="email" >Email address</label>
           <input type="email" name="email" formControlName="email" class="form-control" id="ex1"  aria-describedby="emailHelp">
           <div *ngIf="email.touched && email.invalid">
              <small *ngIf="email.errors.required" class="text-danger">Email is required<br></small>
@@ -29,8 +32,13 @@
               <small  *ngIf="password.errors.minlength" class="text-danger">password must contain 8 characters at least</small>
           </div>
       </div>
+      <br/>
       <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
   </form>
 </div>
 </div>
 </div>
+
+<app-footer>
+
+</app-footer>

@@ -1,9 +1,50 @@
-
 <app-header>
 
 </app-header>
 
 
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-5">
+
+      <app-form-contact (contacts)="submitted($event)"></app-form-contact>
+
+    </div>
+
+    <div class="col-md-7">
+      <section class="mb-4">
+
+        <div class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
+          <input type="text" class="form-control mb-0" [(ngModel)]="serach" placeholder="{{'search' | translate}}">
+
+        </div>
+
+      </section>
+      <table class="table">
+        <thead>
+          <tr>
+
+            <th scope="col">{{'name' | translate}}</th>
+            <th scope="col">{{'lastname' | translate}}</th>
+            <th scope="col">{{'phone' | translate}}</th>
+            <th scope="col">{{'region' | translate}}</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let contact of contacts | filter:serach ; let i = index" app-list-contact [contact]="contact"
+            (deleteItem)="DeletedItem($event)">
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
 
 <app-footer>
 

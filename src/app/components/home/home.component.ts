@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from 'src/app/Modal/Contact';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  contacts : Contact[] = [];
+  serach: string;
+  constructor(  private cs: ContactService) { }
 
   ngOnInit(): void {
+    this.getContacts();
+  }
+  getContacts() {
+    this.cs.getContacts().subscribe((data: Contact[]) => {
+      this.contacts = data;
+    });
+  }
+  submitted(event){
+
+   console.log(event);
+
+   let contact = new Contact(event.nom, event.prenom, event.telephone, event.region);
+
+    this.cs.addContact(contact).subscribe(res => {
+      console.log(res);
+      this.ngOnInit();
+
+    },
+      err => {
+        console.log(err);
+
+      }
+    );
   }
 
+  DeletedItem(contact: Contact) {
+    this.cs.deleteContact(contact.id).subscribe((res) => {
+      this.ngOnInit();
+    });
+  }
 }

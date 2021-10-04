@@ -1,69 +1,73 @@
-
 <div class="container my-5">
+
   <form [formGroup]="contactForm" (ngSubmit)="addContact()">
-      <div class="form-row">
-          <div class="col-9">
-              <div class="form-group">
-                <label for="exampleInputEmail1">{{'name' | translate}}</label>
-              <input type="text" class="form-control" name="nom" id="nom" aria-describedby="emailHelp"  formControlName="nom" placeholder="{{'name' | translate}}">
-                  <div *ngIf="nom.touched && nom.invalid">
-                      <small *ngIf="nom.errors.required" class="text-danger">nom is required<br></small>
-                      <small *ngIf="nom.errors.pattern" class="text-danger">Invalid nom<br></small>
-                      <small *ngIf="nom.errors.minlength" class="text-danger">nom must contain 4 characters at least</small>
-                  </div>
-              </div>
+    
+    <div class="form-row">
+      <div class="col-9">
+        <div class="form-group">
+          <label for="exampleInputEmail1">{{'name' | translate}}</label>
+          <input type="text" class="form-control" name="nom" id="nom" aria-describedby="emailHelp" formControlName="nom"
+            placeholder="{{'name' | translate}}">
+          <div *ngIf="nom.touched && nom.invalid">
+            <small *ngIf="nom.errors.required" class="text-danger">nom is required<br></small>
+            <small *ngIf="nom.errors.pattern" class="text-danger">Invalid nom<br></small>
+            <small *ngIf="nom.errors.minlength" class="text-danger">nom must contain 4 characters at least</small>
           </div>
-          <div class="col-9">
-              <div class="form-group">
-                <label for="exampleInputPassword1">{{'lastname' | translate}}</label>
-                <input type="text" class="form-control" id="prenom"  name="prenom" formControlName="prenom" placeholder="{{'lastname' | translate}}">
-                  <div *ngIf="prenom.touched && prenom.invalid">
-                      <small *ngIf="prenom.errors.required" class="text-danger">prenom is required<br></small>
-                      <small *ngIf="prenom.errors.pattern" class="text-danger">Invalid prenom<br></small>
-                      <small *ngIf="prenom.errors.minlength" class="text-danger">prenom must contain 4 characters at least</small>
-                  </div>
-              </div>
-          </div>
+        </div>
       </div>
-
-      <div class="form-row">
-
-          <div class="col-9">
-              <div class="form-group">
-                <label for="exampleInputPassword1">{{'phone' | translate}}</label>
-                <input type="number" class="form-control" id="telephone" name="telephone" formControlName="telephone"  placeholder="{{'phone' | translate}}">
-                  <div *ngIf="telephone.touched && telephone.invalid">
-                      <small *ngIf="telephone.errors.required" class="text-danger">telephone is required<br></small>
-                      <small *ngIf="telephone.errors.pattern" class="text-danger">Invalid telephone<br></small>
-                      <small *ngIf="telephone.errors.minlength" class="text-danger">telephone must contain 8 characters at least</small>
-                      <small *ngIf="telephone.errors.maxlength" class="text-danger">telephone must contain a maximum of 13 characters</small>
-                  </div>
-              </div>
+      <div class="col-9">
+        <div class="form-group">
+          <label for="exampleInputPassword1">{{'lastname' | translate}}</label>
+          <input type="text" class="form-control" id="prenom" name="prenom" formControlName="prenom"
+            placeholder="{{'lastname' | translate}}">
+          <div *ngIf="prenom.touched && prenom.invalid">
+            <small *ngIf="prenom.errors.required" class="text-danger">prenom is required<br></small>
+            <small *ngIf="prenom.errors.pattern" class="text-danger">Invalid prenom<br></small>
+            <small *ngIf="prenom.errors.minlength" class="text-danger">prenom must contain 4 characters at least</small>
           </div>
+        </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <div class="col-9">
-          <label  for="inlineFormCustomSelect">{{'region' | translate}}</label>
-        <select  class="form-control" id="region" name="region" formControlName="region">
+    <div class="form-row">
+
+      <div class="col-9">
+        <div class="form-group">
+          <label for="exampleInputPassword1">{{'phone' | translate}}</label>
+          <input type="text" class="form-control" id="telephone" name="telephone" formControlName="telephone"
+            placeholder="{{'phone' | translate}}">
+          <div *ngIf="telephone.touched && telephone.invalid">
+            <small *ngIf="telephone.errors.required" class="text-danger">telephone is required<br></small>
+            <small *ngIf="telephone.errors.pattern" class="text-danger">Invalid telephone<br></small>
+            <small *ngIf="telephone.errors.minlength" class="text-danger">telephone must contain 10 characters at
+              least</small>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-9">
+        <label for="inlineFormCustomSelect">{{'region' | translate}}</label>
+        <select class="form-control" id="region" name="region" formControlName="region">
           <option value="">{{'selectregion' | translate}}</option>
-          <option *ngFor="let r of regions" >{{r.nom}}</option>
+          <option *ngFor="let r of regions">{{r.nom}}</option>
 
         </select>
         <div *ngIf="region.touched && region.invalid">
           <small *ngIf="region.errors.required" class="text-danger">region is required<br></small>
-          <small *ngIf="region.errors.minlength" class="text-danger">region must contain 8 characters at least</small>
-      </div>
+
+        </div>
 
       </div>
     </div>
     <br>
-      <div class="form-row">
-          <div class="col">
-              <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">{{'add' | translate}}</button>
+    <div class="form-row">
+      <div class="col">
+        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">{{'add' | translate}}</button>
 
-          </div>
       </div>
+    </div>
   </form>
 </div>
-

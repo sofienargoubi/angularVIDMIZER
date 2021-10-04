@@ -1,60 +1,11 @@
-
-<app-header></app-header>
-
-
-<div class="container my-5">
-<div class="row">
-  <div class="col-md-5">
-
-
-    <app-form-contact ></app-form-contact>
-  </div>
-
-  <div class="col-md-7">
-
-
-
- <section class="mb-4">
-
-                <div class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
-                  <input type="text" class="form-control mb-0" [(ngModel)]="serach" placeholder="{{'search' | translate}}">
-
-                </div>
-
-              </section>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">{{'name' | translate}}</th>
-      <th scope="col">{{'lastname' | translate}}</th>
-      <th scope="col">{{'phone' | translate}}</th>
-      <th scope="col">{{'region' | translate}}</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let contact of contacts | filter:serach ; let i = index">
-    <tr>
-      <th scope="row">{{i+1}}</th>
-      <td>{{contact.nom}}</td>
-      <td>{{contact.prenom}}</td>
-      <td>{{contact.telephone}}</td>
-      <td>{{contact.region}}</td>
-      <td><button class="btn btn-danger" (click)="deleteContact(contact)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-      </svg></button></td>
-    </tr>
-
-  </tbody>
-</table>
-
-
-</div>
-
-</div>
-
-</div>
-
-<app-footer></app-footer>
-
+<th>{{contact.nom}}</th>
+<th>{{contact.prenom}}</th>
+<th>{{contact.telephone}}</th>
+<th>{{contact.region}}</th>
+<th><button class="btn btn-danger" (click)="deleteContact(contact)"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+      height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+      <path
+        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+      <path fill-rule="evenodd"
+        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+    </svg></button></th>

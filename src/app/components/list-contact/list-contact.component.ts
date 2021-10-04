@@ -1,39 +1,26 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Contact } from 'src/app/Modal/Contact';
-import { ContactService } from 'src/app/services/contact.service';
+
 
 @Component({
-  selector: 'app-list-contact',
+  selector: '[app-list-contact]',
   templateUrl: './list-contact.component.html',
   styleUrls: ['./list-contact.component.css']
 })
 export class ListContactComponent implements OnInit {
 
-  serach: string;
-  contacts: Contact[] = [];
+  @Input() contact;
+  @Output() deleteItem = new EventEmitter<Contact>();
 
-  constructor(private cs: ContactService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-
-    this.getContacts();
-
   }
 
 
-  getContacts() {
-    this.cs.getContacts().subscribe((data: Contact[]) => {
-      this.contacts = data;
-    });
-
-
-
-  }
-  
-  deleteContact(contact: Contact) {
-    this.cs.deleteContact(contact.id).subscribe((res) => {
-      this.getContacts();
-    });
+  deleteContact(val) {
+    this.deleteItem.emit(val);
   }
 
 

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ContactService } from 'src/app/services/contact.service';
 import { from } from 'rxjs';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from 'src/app/Modal/Contact';
+
 @Component({
   selector: 'app-form-contact',
   templateUrl: './form-contact.component.html',
@@ -11,8 +12,8 @@ import { Contact } from 'src/app/Modal/Contact';
 })
 export class FormContactComponent implements OnInit {
 
+  @Output() contacts = new EventEmitter<Contact>();
 
-  contacts: Contact[] = [];
   regions: object[] = [];
   contactForm: FormGroup;
   constructor(
@@ -36,12 +37,11 @@ export class FormContactComponent implements OnInit {
       telephone: new FormControl('', [
         Validators.required,
         Validators.pattern("[0-9]+"),
-        Validators.minLength(8),
-        Validators.maxLength(13)
+        Validators.minLength(10),
+
       ]),
       region: new FormControl('', [
         Validators.required,
-        Validators.minLength(4)
 
       ])
     }
@@ -60,46 +60,22 @@ export class FormContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRegion();
-
-
   }
+
 
   addContact() {
-
     let data = this.contactForm.value;
-
-    let contact = new Contact(data.nom, data.prenom, data.telephone, data.region);
-
-    this.cs.addContact(contact).subscribe(res => {
-      console.log(res);
-      this.cs.getContacts().subscribe((data: Contact[]) => {
-
-        this.contacts = data;
-      });
-
-    },
-      err => {
-        console.log(err);
-
-      }
-    );
+    this.contacts.emit(data);
   }
 
-  getRegion(){
+  getRegion() {
     this.cs.getRegion().subscribe(
-
       (data: object[]) => {
-        
-
-
-          this.regions = data;
-
-
+        this.regions = data;
       },
-        err => {
-          console.log(err);
-
-        }
+      err => {
+        console.log(err);
+      }
 
     );
   }

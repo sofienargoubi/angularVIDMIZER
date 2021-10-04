@@ -11,7 +11,6 @@ const routes: Routes = [
 
 
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'contact', component: ListContactComponent },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
 
