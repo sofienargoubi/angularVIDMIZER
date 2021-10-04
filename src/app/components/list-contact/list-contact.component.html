@@ -1,10 +1,55 @@
 
-<app-header>
+<app-header></app-header>
 
-</app-header>
 
-<app-form-contact></app-form-contact>
-<app-footer>
+<div class="container my-5">
+<div class="row">
+  <div class="col-md-5">
 
-</app-footer>
+
+    <app-form-contact ></app-form-contact>
+  </div>
+
+  <div class="col-md-7">
+
+
+
+ <section class="mb-4">
+
+                <div class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
+                  <input type="text" class="form-control mb-0" placeholder="Search..">
+
+                </div>
+
+              </section>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Télephone</th>
+      <th scope="col">Région</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let contact of contacts">
+    <tr>
+      <th scope="row">1</th>
+      <td>{{contact.nom}}</td>
+      <td>{{contact.prenom}}</td>
+      <td>{{contact.telephone}}</td>
+      <td>{{contact.region}}</td>
+      <td><button (click)="deleteContact(contact)">Delete</button></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+<app-footer></app-footer>
 
