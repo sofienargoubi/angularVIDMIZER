@@ -1,4 +1,10 @@
 {
-  "compA": "FRComponent A works",
-  "compB": "FRComponent B works"
+  "home": "Accueil",
+  "contact": "Contact",
+  "name": "Nom",
+  "lastname": "Prénom",
+  "phone": "Télephone",
+  "region": "Région",
+  "search": "Rechercher..",
+  "add" :"Ajouter Contact"
 }

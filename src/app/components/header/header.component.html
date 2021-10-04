@@ -6,9 +6,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" [routerLink]="['']">Home </a>
-      <a class="nav-item nav-link active" [routerLink]="['/contact']">Contact</a>
+      <a class="nav-item nav-link active" [routerLink]="['']">{{'home' | translate}} </a>
+      <a class="nav-item nav-link active" [routerLink]="['/contact']">{{'contact' | translate}}</a>
 
     </div>
   </div>
+  <app-select-language></app-select-language>
 </nav>

@@ -1,4 +1,10 @@
 {
-  "compA": "Component A works",
-  "compB": "Component B works"
+  "home": "Home",
+  "contact": "Contact",
+  "name": "First Name",
+  "lastname": "Last Name",
+  "phone": "Phone",
+  "region": "Region",
+  "search": "Search..",
+  "add" :"Add Contact"
 }
