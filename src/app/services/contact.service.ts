@@ -46,12 +46,22 @@ export class ContactService {
       map(this.extractData),
       catchError(this.handleError));
   }
-  
+
   deleteContact( contact : Contact | number) {
     const id = typeof contact === 'number' ? contact : contact.id;
     return this.http.delete(this.contactURL+"delete_contact/"+id, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));;
     }
+
+
+    getRegion(){
+      return this.http.get("https://geo.api.gouv.fr/regions",this.httpOptions).pipe(
+        map(this.extractData),
+        catchError(this.handleError));
+    }
+
+   
+
 
 }

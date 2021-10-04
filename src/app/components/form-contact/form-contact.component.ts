@@ -10,7 +10,10 @@ import { Contact } from 'src/app/Modal/Contact';
   styleUrls: ['./form-contact.component.css']
 })
 export class FormContactComponent implements OnInit {
+
+
   contacts: Contact[] = [];
+  regions: object[] = [];
   contactForm: FormGroup;
   constructor(
 
@@ -60,14 +63,13 @@ export class FormContactComponent implements OnInit {
 
   addContact() {
 
-
     let data = this.contactForm.value;
 
     let contact = new Contact(data.nom, data.prenom, data.telephone, data.region);
+
     this.cs.addContact(contact).subscribe(res => {
       console.log(res);
       this.cs.getContacts().subscribe((data: Contact[]) => {
-
 
         this.contacts = data;
       });
@@ -77,6 +79,25 @@ export class FormContactComponent implements OnInit {
         console.log(err);
 
       }
+    );
+  }
+
+  getRegion(){
+    this.cs.getRegion().subscribe(
+
+      (data: object[]) => {
+        console.log(data);
+
+
+          this.regions = data;
+
+
+      },
+        err => {
+          console.log(err);
+
+        }
+   
     );
   }
 

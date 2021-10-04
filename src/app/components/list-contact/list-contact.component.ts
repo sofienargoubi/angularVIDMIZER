@@ -1,4 +1,4 @@
-import { Component, OnInit ,OnChanges} from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Contact } from 'src/app/Modal/Contact';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -9,26 +9,33 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class ListContactComponent implements OnInit {
 
+  serach: string;
   contacts: Contact[] = [];
-  constructor(private  cs: ContactService) { }
+
+  constructor(private cs: ContactService) { }
 
   ngOnInit(): void {
 
     this.getContacts();
+
   }
 
 
-  getContacts(){
+  getContacts() {
     this.cs.getContacts().subscribe((data: Contact[]) => {
       this.contacts = data;
     });
+
+
+
   }
-  deleteContact( contact : Contact){
-    this.cs.deleteContact(contact.id).subscribe( (res)=>{
+  
+  deleteContact(contact: Contact) {
+    this.cs.deleteContact(contact.id).subscribe((res) => {
       this.getContacts();
     });
-
-
   }
+
+
 
 }
