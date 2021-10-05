@@ -11,54 +11,57 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  isHidden : boolean = true;
+  class: string = "success";
+  isHidden: boolean = true;
+  message: string = "";
 
   registerForm: FormGroup
 
   constructor(
-    private us : UserService,
+    private us: UserService,
     private fb: FormBuilder,
-    private router : Router,
+    private router: Router,
 
 
   ) {
 
     let formControls = {
-      firstname: new FormControl('',[
+      firstname: new FormControl('', [
         Validators.required,
         Validators.pattern("[A-Za-z .'-]+"),
         Validators.minLength(4)
       ]),
-      lastname: new FormControl('',[
+      lastname: new FormControl('', [
         Validators.required,
         Validators.pattern("[A-Za-z .'-]+"),
         Validators.minLength(4)
       ]),
 
-      email: new FormControl('',[
+      email: new FormControl('', [
         Validators.required,
         Validators.email,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
 
       ]),
-      password: new FormControl('',[
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(8)
       ]),
-      repassword: new FormControl('',[
+      repassword: new FormControl('', [
         Validators.required,
       ])
     }
 
     this.registerForm = this.fb.group(formControls)
 
-   }
+  }
 
-   get firstname() { return this.registerForm.get('firstname') }
-   get lastname() { return this.registerForm.get('lastname') }
-   get email() { return this.registerForm.get('email') }
-   get password() { return this.registerForm.get('password') }
-   get repassword() { return this.registerForm.get('repassword') }
+  get firstname() { return this.registerForm.get('firstname') }
+  get lastname() { return this.registerForm.get('lastname') }
+  get email() { return this.registerForm.get('email') }
+  get password() { return this.registerForm.get('password') }
+  get repassword() { return this.registerForm.get('repassword') }
+
   ngOnInit(): void {
   }
 
@@ -68,19 +71,26 @@ export class RegisterComponent implements OnInit {
     console.log(data);
 
     let user = new User(data.firstname, data.lastname, data.email, data.password);
-    console.log(user);
+    //console.log(user);
     this.us.addUser(user).subscribe(res => {
-      //console.log(res);
 
-      this.isHidden =false;
+      this.message = res['status'];
+      this.class = "success";
+      
+      if (this.message === "bad") {
+        this.message = res['errors'].form.errors.children.email.errors ;
+        this.class = "danger";
+      }
+
+      this.isHidden = false;
 
       setTimeout(() => {
-        this.router.navigate(['/login']);
+       // this.router.navigate(['/login']);
       }, 1000);
 
     },
       err => {
-        
+
         console.log(err);
 
       }
