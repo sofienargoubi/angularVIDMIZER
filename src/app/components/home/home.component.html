@@ -6,7 +6,7 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-md-5">
-      <div class="alert alert-success" role="alert" *ngIf="!isHidden" >
+      <div class="alert alert-{{class}}" role="alert" *ngIf="!isHidden" >
        {{message}}
       </div>
       <app-form-contact (contacts)="submitted($event)"></app-form-contact>

@@ -9,11 +9,12 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class HomeComponent implements OnInit {
 
-  contacts : Contact[] = [];
+  contacts: Contact[] = [];
   serach: string;
-  isHidden : boolean = true;
-  message : string ="";
-  constructor(  private cs: ContactService) { }
+  class: string = "success";
+  isHidden: boolean = true;
+  message: string = "";
+  constructor(private cs: ContactService) { }
 
   ngOnInit(): void {
     this.getContacts();
@@ -23,19 +24,24 @@ export class HomeComponent implements OnInit {
       this.contacts = data;
     });
   }
-  submitted(event){
+  submitted(event) {
 
-   console.log(event);
-
-   let contact = new Contact(event.nom, event.prenom, event.telephone, event.region);
+    let contact = new Contact(event.nom, event.prenom, event.telephone, event.region);
 
     this.cs.addContact(contact).subscribe(res => {
-      console.log(res);
-      this.isHidden =false;
+
       this.message = res['status'];
+
+      if (this.message === "bad") {
+        this.message = res['errors'].form.errors.children.nom.errors || res['errors'].form.errors.children.prenom.errors || res['errors'].form.errors.children.telephone.errors;
+        this.class = "danger";
+      }
+
+      this.isHidden = false;
       setTimeout(() => {
-        this.isHidden =true;
-      }, 2000);
+        this.isHidden = true;
+      }, 3000);
+
       this.ngOnInit();
 
     },
@@ -44,7 +50,7 @@ export class HomeComponent implements OnInit {
 
       }
     );
-    
+
   }
 
   DeletedItem(contact: Contact) {
