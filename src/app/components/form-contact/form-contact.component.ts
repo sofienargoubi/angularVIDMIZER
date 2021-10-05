@@ -66,6 +66,7 @@ export class FormContactComponent implements OnInit {
   addContact() {
     let data = this.contactForm.value;
     this.contacts.emit(data);
+    this.contactForm.reset();
   }
 
   getRegion() {

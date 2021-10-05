@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
 
   contacts : Contact[] = [];
   serach: string;
+  isHidden : boolean = true;
+  message : string ="";
   constructor(  private cs: ContactService) { }
 
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class HomeComponent implements OnInit {
 
     this.cs.addContact(contact).subscribe(res => {
       console.log(res);
+      this.isHidden =false;
+      this.message = res['status'];
+      setTimeout(() => {
+        this.isHidden =true;
+      }, 2000);
       this.ngOnInit();
 
     },
@@ -37,6 +44,7 @@ export class HomeComponent implements OnInit {
 
       }
     );
+    
   }
 
   DeletedItem(contact: Contact) {

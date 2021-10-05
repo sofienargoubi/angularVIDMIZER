@@ -6,7 +6,9 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-md-5">
-
+      <div class="alert alert-success" role="alert" *ngIf="!isHidden" >
+       {{message}}
+      </div>
       <app-form-contact (contacts)="submitted($event)"></app-form-contact>
 
     </div>
@@ -33,7 +35,7 @@
         </thead>
         <tbody>
 
-          <tr *ngFor="let contact of contacts | filter:serach ; let i = index" app-list-contact [contact]="contact"
+          <tr *ngFor="let contact of contacts | filter:serach  ; let i = index" app-list-contact [contact]="contact"
             (deleteItem)="DeletedItem($event)">
           </tr>
 

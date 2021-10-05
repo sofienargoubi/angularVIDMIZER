@@ -7,6 +7,9 @@
   <div class="row">
 
 <div class="container my-5">
+  <div class="alert alert-success" role="alert" *ngIf="!isHidden" >
+    This is a success alert—check it out!
+  </div>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="form-row">
           <div class="col-6">
