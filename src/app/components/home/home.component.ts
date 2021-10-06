@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.cs.addContact(contact).subscribe(res => {
 
       this.message = res['status'];
-
+      this.class = "success";
       if (this.message === "bad") {
         this.message = res['errors'].form.errors.children.nom.errors || res['errors'].form.errors.children.prenom.errors || res['errors'].form.errors.children.telephone.errors;
         this.class = "danger";

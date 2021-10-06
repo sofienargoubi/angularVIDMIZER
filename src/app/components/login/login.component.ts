@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +11,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   loginForm : FormGroup
+  class: string = "success";
+  isHidden: boolean = true;
+  message: string = "";
 
   constructor(
-    private formBuilder :FormBuilder
+    private us : UserService,
+    private formBuilder :FormBuilder,
+    private router: Router,
   ) {
     let formControls = {
       email: new FormControl('',[
@@ -30,13 +37,38 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  get email(){
-    return this.loginForm.get('email');
-  }
-  get password(){
-    return this.loginForm.get('password');
-  }
+  
+  get email(){return this.loginForm.get('email'); }
+  get password(){return this.loginForm.get('password');}
+
   login(){
-    
+    let data = this.loginForm.value;
+
+        this.us.login(data.email,data.password).subscribe(res => {
+
+         // console.log(res);
+
+     this.message = res['status'];
+     this.class = "danger";
+
+      if (this.message === "ok") {
+        localStorage.setItem("Connected",JSON.stringify(true));
+        this.router.navigate(['/']);
+
+      }
+
+      this.isHidden = false;
+
+
+
+
+
+    },
+      err => {
+
+       // console.log(err);
+
+      }
+    );
   }
 }

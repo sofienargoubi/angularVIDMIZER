@@ -40,5 +40,22 @@ export class UserService {
       map(this.extractData),
       catchError(this.handleError));
   }
+  login(email : string , pwd : string) {
+    return this.http.post(this.contactURL+"login", {"email" : email , "pwd" : pwd}, this.httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
+  isLoggedIn(){
+
+    let user = localStorage.getItem("Connected");
+    console.log(user);
+
+    if(user==="true"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 }
