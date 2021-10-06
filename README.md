@@ -24,7 +24,7 @@ mini-application create with symfony4.4 and angular 9 , the projet contain authe
 - Go to main directory by typing "cd angularVIDMIZER" and run "npm install"
 - Run "ng serve --open" in the directory
 - Go to http://localhost:4200 and Enjoy ;)
-- NP : you can find the server in this repo : https://github.com/sofienargoubi/symfony_VIDMIZER 
+- NB : you need to clone the server from : https://github.com/sofienargoubi/symfony_VIDMIZER 
 
 ## :bulb: Devoloped With
 
