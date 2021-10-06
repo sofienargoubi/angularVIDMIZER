@@ -68,25 +68,27 @@ export class RegisterComponent implements OnInit {
 
   register() {
     let data = this.registerForm.value;
-    console.log(data);
 
     let user = new User(data.firstname, data.lastname, data.email, data.password);
-    //console.log(user);
+
     this.us.addUser(user).subscribe(res => {
 
       this.message = res['status'];
       this.class = "success";
-      
+
       if (this.message === "bad") {
-        this.message = res['errors'].form.errors.children.email.errors ;
+        this.message = res['errors'].form.errors.children.email.errors;
         this.class = "danger";
+      }else{
+        this.message ="You have been successfully registered."
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
       }
 
       this.isHidden = false;
 
-      setTimeout(() => {
-       // this.router.navigate(['/login']);
-      }, 1000);
+
 
     },
       err => {

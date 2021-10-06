@@ -3,95 +3,98 @@
 </app-header>
 
 <div class="container" style="padding-top: 60px;">
-  <h1 class="page-header"  class="col-md-4 offset-md-4">{{'register' | translate}}</h1>
+  <h1 class="page-header" class="col-md-4 offset-md-4">{{'register' | translate}}</h1>
   <div class="row">
 
-<div class="container my-5 ">
-  <div  class="col-md-4 offset-md-4">
-  <div class="alert alert-{{class}}" role="alert" *ngIf="!isHidden" >
-    {{message}}
+    <div class="container my-5 ">
+      <div class="col-md-4 offset-md-4">
+        <div class="alert alert-{{class}}" role="alert" *ngIf="!isHidden">
+          {{message}}
+        </div>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="form-row">
+          <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+              <label for="firstname">{{'name' | translate}}</label>
+              <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname">
+              <div *ngIf="firstname.touched && firstname.invalid">
+                <small *ngIf="firstname.errors.required" class="text-danger">{{'firstNameError1' |translate}}<br></small>
+                <small *ngIf="firstname.errors.pattern" class="text-danger">{{'firstNameError2' | translate}}<br></small>
+                <small *ngIf="firstname.errors.minlength" class="text-danger">{{'firstNameError3' | translate}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+              <label for="lastname">{{'lastname' | translate}}</label>
+              <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname">
+              <div *ngIf="lastname.touched && lastname.invalid">
+                <small *ngIf="lastname.errors.required" class="text-danger">{{'lastNameError1' | translate}}<br></small>
+                <small *ngIf="lastname.errors.pattern" class="text-danger">{{'lastNameError2' | translate}}<br></small>
+                <small *ngIf="lastname.errors.minlength" class="text-danger">{{'lastNameError3' | translate}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{'email' | translate}}</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
+                aria-describedby="emailHelp">
+              <div *ngIf="email.touched && email.invalid">
+                <small *ngIf="email.errors.required" class="text-danger">{{'emailError1' | translate}}<br></small>
+                <small *ngIf="email.errors.email" class="text-danger">{{'emailError2' | translate}}<br></small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+              <label for="exampleInputPassword1">{{'password' | translate}}</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+              <div *ngIf="password.touched && password.invalid">
+                <small *ngIf="password.errors.required" class="text-danger">{{'passwordError1' | translate}}<br></small>
+                <small *ngIf="password.errors.minlength" class="text-danger">{{'passwordError2' | translate}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-4">
+            <div class="form-group">
+              <label for="repeatPassword">{{'repassword' | translate}}</label>
+              <input type="password" class="form-control" id="repeatPassword" formControlName="repassword">
+              <div *ngIf="repassword.touched && repassword.invalid">
+                <small *ngIf="repassword.errors.required" class="text-danger">{{'repasswordError1' | translate}}<br></small>
+              </div>
+              <div *ngIf="repassword.valid && repassword.value != password.value" class="text-danger">
+                {{'repasswordError2' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="col-md-4 offset-md-4">
+            <button type="submit" class="btn btn-dark"
+              [disabled]="registerForm.invalid || repassword.value != password.value">{{'register' |
+              translate}}</button>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+
   </div>
-  </div>
-
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
-      <div class="form-row">
-          <div  class="col-md-4 offset-md-4">
-              <div class="form-group">
-                  <label for="firstname">{{'name' | translate}}</label>
-                  <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname">
-                  <div *ngIf="firstname.touched && firstname.invalid">
-                      <small *ngIf="firstname.errors.required" class="text-danger">{{'firstNameError1' | translate}}<br></small>
-                      <small *ngIf="firstname.errors.pattern" class="text-danger">{{'firstNameError2' | translate}}<br></small>
-                      <small *ngIf="firstname.errors.minlength" class="text-danger">{{'firstNameError3' | translate}}</small>
-                  </div>
-              </div>
-          </div>
-          <div  class="col-md-4 offset-md-4">
-              <div class="form-group">
-                  <label for="lastname">{{'lastname' | translate}}</label>
-                  <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname">
-                  <div *ngIf="lastname.touched && lastname.invalid">
-                      <small *ngIf="lastname.errors.required" class="text-danger">{{'lastNameError1' | translate}}<br></small>
-                      <small *ngIf="lastname.errors.pattern" class="text-danger">{{'lastNameError2' | translate}}<br></small>
-                      <small *ngIf="lastname.errors.minlength" class="text-danger">{{'lastNameError3' | translate}}</small>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div  class="col-md-4 offset-md-4">
-              <div class="form-group">
-                  <label for="exampleInputEmail1">{{'email' | translate}}</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp">
-                  <div *ngIf="email.touched && email.invalid">
-                      <small *ngIf="email.errors.required" class="text-danger">{{'emailError1' | translate}}<br></small>
-                      <small *ngIf="email.errors.email" class="text-danger">{{'emailError2' | translate}}<br></small>
-                  </div>
-              </div>
-          </div>
-
-      </div>
-
-      <div class="form-row">
-          <div  class="col-md-4 offset-md-4">
-              <div class="form-group">
-                  <label for="exampleInputPassword1">{{'password' | translate}}</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
-                  <div *ngIf="password.touched && password.invalid">
-                      <small *ngIf="password.errors.required" class="text-danger">{{'passwordError1' | translate}}<br></small>
-                      <small *ngIf="password.errors.minlength" class="text-danger">{{'passwordError2' | translate}}</small>
-                  </div>
-              </div>
-          </div>
-          <div  class="col-md-4 offset-md-4">
-              <div class="form-group">
-                  <label for="repeatPassword">{{'repassword' | translate}}</label>
-                  <input type="password" class="form-control" id="repeatPassword" formControlName="repassword">
-                  <div *ngIf="repassword.touched && repassword.invalid">
-                      <small *ngIf="repassword.errors.required" class="text-danger">{{'repasswordError1' | translate}}<br></small>
-                  </div>
-                  <div *ngIf="repassword.valid && repassword.value != password.value" class="text-danger">
-                    {{'repasswordError2' | translate}}
-                  </div>
-              </div>
-          </div>
-      </div>
-      <br>
-      <div class="form-row">
-          <div  class="col-md-4 offset-md-4">
-              <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid || repassword.value != password.value">{{'register' | translate}}</button>
-
-          </div>
-      </div>
-  </form>
-
 </div>
 
- </div>
- </div>
 
-
- <app-footer>
+<app-footer>
 
 </app-footer>

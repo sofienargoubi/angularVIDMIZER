@@ -20,8 +20,9 @@
     </div>
     </div>
 
-    <div class="col-md-7">
-      
+
+    <div *ngIf="contacts?.length"  class="col-md-7">
+
       <section class="mb-4">
 
         <div class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
@@ -42,7 +43,6 @@
           </tr>
         </thead>
         <tbody>
-
           <tr *ngFor="let contact of contacts | filter:serach  ; let i = index" app-list-contact [contact]="contact"
             (deleteItem)="DeletedItem($event)">
           </tr>
@@ -51,7 +51,7 @@
       </table>
 
     </div>
-
+    <div *ngIf="!contacts?.length" class="col-md-1 offset-md-1"><img src="assets/img/3024051.jpg" width="700" class="d-inline-block align-top" alt=""></div>
   </div>
 
 </div>

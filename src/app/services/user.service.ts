@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../Modal/User';
 
@@ -35,12 +35,12 @@ export class UserService {
     return body || { };
   }
 
-  addUser(user : User) {
+  addUser(user : User)  : Observable<any> {
     return this.http.post(this.contactURL+"new_user", user, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
-  login(email : string , pwd : string) {
+  login(email : string , pwd : string)  : Observable<any> {
     return this.http.post(this.contactURL+"login", {"email" : email , "pwd" : pwd}, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));

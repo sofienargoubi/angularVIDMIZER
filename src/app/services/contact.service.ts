@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 
-import {  throwError  } from 'rxjs';
+import {  Observable, throwError  } from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import { Contact } from '../Modal/Contact';
 
@@ -35,19 +35,19 @@ export class ContactService {
     const body = res;
     return body || { };
   }
-  getContacts() {
+  getContacts() : Observable<any> {
     return this.http.get(this.contactURL+"contacts", this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
 
-  addContact(contact : Contact) {
+  addContact(contact : Contact)  : Observable<any> {
     return this.http.post(this.contactURL+"new_contact", contact, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
 
-  deleteContact( contact : Contact | number) {
+  deleteContact( contact : Contact | number)  : Observable<any> {
     const id = typeof contact === 'number' ? contact : contact.id;
     return this.http.delete(this.contactURL+"delete_contact/"+id, this.httpOptions).pipe(
       map(this.extractData),
@@ -55,7 +55,7 @@ export class ContactService {
     }
 
 
-    getRegion(){
+    getRegion()  : Observable<any> {
       return this.http.get("https://geo.api.gouv.fr/regions",this.httpOptions).pipe(
         map(this.extractData),
         catchError(this.handleError));
