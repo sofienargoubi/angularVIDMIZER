@@ -17,7 +17,7 @@ https://user-images.githubusercontent.com/48603169/136290650-b7d22ce4-56e3-44ce-
 
 ## :mega: About the projet
 
-mini-application create with symfony4.4 and angular 9 , the projet contain authentification module ( register / login ) and addres-book module ( add / delete / search / order )  also the project contain i18n module that allow us to translate the content of our application (Eng/Fr).
+mini-application create with symfony4.4 and angular 9, the project contains an authentification module (register/login) and address-book module (add/delete / search/order) also the project contain an i18n module that allows us to translate the content of our application (Eng/Fr).
 
 
 
